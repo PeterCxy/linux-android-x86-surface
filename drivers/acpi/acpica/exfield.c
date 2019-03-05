@@ -98,6 +98,7 @@ acpi_ex_read_data_from_field(struct acpi_walk_state *walk_state,
 	union acpi_operand_object *buffer_desc;
 	void *buffer;
 	u32 buffer_length;
+	u8 field_flags;
 
 	ACPI_FUNCTION_TRACE_PTR(ex_read_data_from_field, obj_desc);
 
@@ -147,8 +148,10 @@ acpi_ex_read_data_from_field(struct acpi_walk_state *walk_state,
 	 */
 	buffer_length =
 	    (acpi_size)ACPI_ROUND_BITS_UP_TO_BYTES(obj_desc->field.bit_length);
+	field_flags = obj_desc->common_field.field_flags;
 
-	if (buffer_length > acpi_gbl_integer_byte_width) {
+	if (buffer_length > acpi_gbl_integer_byte_width ||
+		(field_flags & AML_FIELD_ACCESS_TYPE_MASK) == AML_FIELD_ACCESS_BUFFER)) {
 
 		/* Field is too large for an Integer, create a Buffer instead */
 
