@@ -151,7 +151,7 @@ acpi_ex_read_data_from_field(struct acpi_walk_state *walk_state,
 	field_flags = obj_desc->common_field.field_flags;
 
 	if (buffer_length > acpi_gbl_integer_byte_width ||
-		(field_flags & AML_FIELD_ACCESS_TYPE_MASK) == AML_FIELD_ACCESS_BUFFER)) {
+		(field_flags & AML_FIELD_ACCESS_TYPE_MASK) == AML_FIELD_ACCESS_BUFFER) {
 
 		/* Field is too large for an Integer, create a Buffer instead */
 
