@@ -147,7 +147,7 @@ acpi_ex_read_data_from_field(struct acpi_walk_state *walk_state,
 	 * Note: Field.length is in bits.
 	 */
 	buffer_length =
-	    (acpi_size)ACPI_ROUND_BITS_UP_TO_BYTES(obj_desc->field.bit_length);
+	    (acpi_size)ACPI_ROUND_BITS_UP_TO_BYTES(obj_desc->common_field.bit_length);
 	field_flags = obj_desc->common_field.field_flags;
 
 	if (buffer_length > acpi_gbl_integer_byte_width ||
